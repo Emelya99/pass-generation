@@ -4,37 +4,102 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Password Generator</title>
+    <!-- Fav -->
+    <link rel="shortcut icon" href="img/fav.png" type="image/x-icon">
     <!-- Fonts -->
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Tomorrow:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Slick Slider -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"> 
     <!-- Reset CSS -->
-    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="css/reset.css">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <div class="wrapper">
-    <header></header>
+<main>
 
-    <main>
-    </main>
+    <section class="password">
+        <div class="container">
+            <h1>Password Generator</h1>
+            <div class="inner">
+                <div class="left-part">
+                    <form class="password-form" action="#">
+                        <div class="input-box">
+                            <input type="text" class="main-input" disabled>
+                            <div class="strength-pass">
+                                <span class="active"></span>
+                                <span class="active"></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="create-pass">
+                                <img src="img/reset.svg" alt="reset">
+                            </div>
+                        </div>
+                        <button class="copy-btn" type="button">
+                            Copy Password_
+                            <img class="history-copy" src="img/arrow.svg" alt="arrow">
+                        </button>
+                        <ul class="extra-settings">
+                            <li class="extra-item">
+                                <input type="checkbox" id="uppercase" name="uppercase" checked>
+                                <label for="uppercase" title="Each letter has a 20% chance to become large">Uppercase letters</label>
+                            </li>
+                            <li class="extra-item">
+                                <input type="checkbox" id="different" name="different">
+                                <label for="different" title="Password consists of different characters">Different</label>
+                            </li>
+                            <li class="extra-item">
+                                <input type="checkbox" id="numbers" name="numbers">
+                                <label for="numbers" title="Numbers will be added to the password">Numbers</label>
+                            </li>
+                            <li class="extra-item">
+                                <input type="checkbox" id="symbols" name="symbols">
+                                <label for="symbols" title="Characters will be added to the password">Symbols</label>
+                            </li>
+                        </ul>
+                        
+                    </form>
+                </div>
+                <div class="right-part">
+                    <h3>Password history</h3>
+                    <ul class="history-list">
+                        <li class="history-item">
+                            <p class="history-pass">^d3>~9YDA8s}cWN9L_P^ <span>1a4Txe3m*%Qm^vdXs!</span></p>
+                            <img class="history-copy" src="img/copy.svg" alt="copy">
+                        </li>
+                        <li class="history-item">
+                            <p class="history-pass">^d3>~9YDA8s}cWN9L_P^ <span>1a4Txe3m*%Qm^vdXs!</span></p>
+                            <img class="history-copy" src="img/copy.svg" alt="copy">
+                        </li>
+                        <li class="history-item">
+                            <p class="history-pass">^d3>~9YDA8s}cWN9L_P^ <span>1a4Txe3m*%Qm^vdXs!</span></p>
+                            <img class="history-copy" src="img/copy.svg" alt="copy">
+                        </li>
+                    </ul>
+                    <div class="clear-history">
+                        <button class="clear-history_btn">Clear history</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer></footer>
+    <div class="popup popup-copied">
+        <img src="img/check.svg" alt="check">
+        Copied
+    </div>
 
-</div>
+</main>
 
 
 
 
-  <!-- Jquery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- Slick Slider -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-  <!-- Main JS -->
-  <script src="./scripts/main.js"></script>
+<script type="module" src="js/main.js"></script>
+
 </body>
 </html>

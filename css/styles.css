@@ -1,60 +1,283 @@
 *{
     box-sizing: border-box;
 }
-
 html,
 body {
     height: 100%;
 }
-
+body {
+    font-family: 'Tomorrow', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #FAFAFA;
+    background: #000000;
+    border: 1px solid rgba(0, 240, 255, 1);
+    border-width: 2px 1px 0 1px;
+}
 main {
     flex: 1 1 auto;
 }
-
+h1 {
+    max-width: 558px;
+    margin-bottom: 60px;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1em;
+    color: #F8EF00;
+}
+h3 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 30px;
+}
 a {
     text-decoration: none;
 }
-
 button {
+    font-family: 'Tomorrow', sans-serif;
+    padding: 0;
+    border: none;
+    background: none;
     cursor: pointer;
 }
-
 img {
     width: 100%;
 }
-
 *:before,
 *:after,
 *:hover:before,
 *:hover:after,
 a,
-a:hover,
-button,
-button:hover,
-svg,
-svg:hover,
-span,
-span:hover,
-li,
-li:hover,
-p,
-p:hover {
+button {
     transition: all 0.3s ease-in-out;
 }
 
+/* Helpers */
 .wrapper {
     min-height: 100%;
     display: flex;
     flex-direction: column;
 }
-
 .container {
-    max-width: 1300px;
+    max-width: 1166px;
     padding: 0 15px;
     margin: 0 auto;
 }
 
-.title {
-
+/* Password */
+.password {
+    padding: 100px 0 150px;
+}
+.password .inner {
+    display: flex;
+    justify-content: space-between;
+}
+.password .left-part {
+    width: calc(100% - 390px);
+    max-width: 588px;
+}
+.password .input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+.password .main-input {
+    font-family: 'Tomorrow', sans-serif;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    padding: 20px 92px 20px 20px;
+    border: 2px solid #00F0FF;
+    outline: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.2em;
+    color: #00F0FF;
+    background: rgba(0, 240, 255, 0.1);
+}
+.password .create-pass {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 0;
+    line-height: 1;
+    cursor: pointer;
+}
+.password .strength-pass {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+    position: absolute;
+    top: 50%;
+    right: 56px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 18px;
+}
+.password .strength-pass span {
+    width: 100%;
+    height: 3px;
+    background: #FF003C;
+}
+.password .strength-pass span.active {
+    background: #00F0FF;
+}
+.password .copy-btn {
+    position: relative;
+    margin-bottom: 64px;
+    padding: 20px 118px 20px 20px;
+    border-right: 2px solid #FF003C;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #000000;
+    background: #F8EF00;
+}
+.password .copy-btn img {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+}
+.password .copy-btn:after {
+    position: absolute;
+    content: 'R25';
+    bottom: 0;
+    right: 20px;
+    padding: 0 14px 0 7px;
+    border-left: 2px solid #FF003C;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #F8EF00;
+    background: #000000;
+}
+.password .copy-btn:before {
+    position: absolute;
+    content: '';
+    left: -10px;
+    bottom: -10px;
+    transform: rotate(135deg);
+    border: 10px solid transparent;
+    border-left: 10px solid #000;
+}
+.password .extra-settings {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: calc(100% + 28px);
+    margin: -14px;
+}
+.password .extra-settings li {
+    width: 50%;
+    padding: 14px;
+}
+.password .extra-item input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.password .extra-item input + label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+.password .extra-item input + label:before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    border: 2px solid #F8EF00;
+    background: #000;
+}
+.password .extra-item input:checked + label::before {
+    background: #F8EF00;
+}
+.password .create-pass img {
+    width: 24px;
+    height: 24px;
+}
+.password .right-part {
+    width: 390px;
+}
+.password .history-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.password .history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.password .history-item:not(:last-child) {
+    margin-bottom: 20px;
+}
+.password .history-pass {
+    width: calc(100% - 24px);
+    padding-right: 100px;
+    opacity: 0.8;
+}
+.password .history-pass span {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    color: #BBBBBB;
+}
+.password .history-copy {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+.password .clear-history {
+    display: flex;
+    justify-content: center;
+}
+.password .clear-history_btn {
+    color: #F8EF00;
+}
+.password .clear-history_btn:hover {
+    color: rgba(0, 240, 255, 1);
 }
 
+
+
+/* Popups  */
+.popup {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    padding: 15px 45px;
+    border-radius: 10px;
+    background: #4caf50;
+}
+
+/* Popup Copied */
+.popup-copied {
+    display: none;
+}
+.popup-copied.active {
+    display: flex;
+}
+.popup-copied img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
