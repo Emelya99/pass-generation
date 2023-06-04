@@ -80,6 +80,7 @@ button {
     width: calc(100% - 390px);
     max-width: 588px;
 }
+/* Input Form */
 .password .input-box {
     position: relative;
     margin-bottom: 20px;
@@ -128,6 +129,7 @@ button {
 .password .strength-pass span.active {
     background: #00F0FF;
 }
+/* Copy Btn */
 .password .copy-btn {
     position: relative;
     margin-bottom: 64px;
@@ -174,6 +176,42 @@ button {
     border: 10px solid transparent;
     border-left: 10px solid #000;
 }
+/* Range Box */
+.password .range-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 64px;
+}
+.password .range-input {
+    position: relative;
+    width: 100%;
+    height: 3px;
+    margin: 0;
+    outline: none;
+    background: #00F0FF;
+    -webkit-appearance: none;
+}
+.password .range-input::-webkit-slider-thumb {
+    width: 21px;
+    height: 21px;
+    background: #F8EF00;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+.password .range-value {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    transform: translateX(-100%);
+    width: 21px;
+    height: 21px;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+}
+/* Extra Settings */
 .password .extra-settings {
     position: relative;
     display: flex;
