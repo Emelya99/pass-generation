@@ -3,3 +3,7 @@ export const storage = {
     numbers: '0123456789',
     symbols: `-!@#)$]%^{"&*(_+;/=[,<>|'?:№~\.}`,
 }
+
+
+/* Popups */
+export const popupCopied = document.querySelector('.popup-copied');

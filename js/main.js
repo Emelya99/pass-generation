@@ -1,4 +1,5 @@
 import { storage } from './storage.js';
+import { visibleCopiedPopup } from './utils.js';
 
 const passwordContainer = document.querySelector('.password');
 const createPass = passwordContainer.querySelector('.create-pass');
@@ -13,8 +14,9 @@ const uppercaseCheckBox = passwordContainer.querySelector('#uppercase');
 const differentCheckBox = passwordContainer.querySelector('#different');
 const numbersCheckBox = passwordContainer.querySelector('#numbers');
 const symbolsCheckBox = passwordContainer.querySelector('#symbols');
-/* Popups */
-const popupCopied = document.querySelector('.popup-copied');
+/* History Elements */
+const historyList = passwordContainer.querySelector('.history-list');
+const clearHistoryBtn = passwordContainer.querySelector('.clear-history_btn');
 
 const { alfabet, numbers, symbols } = storage;
 
@@ -55,18 +57,28 @@ const generationPass = () => {
         }
     }
 
+    // Render pass in block historyList
+    let layoutHistoryPass =
+        `<li class="history-item">
+            <p class="history-pass">${finalPass}</p>
+            <img class="history-copy" src="img/copy.svg" alt="copy">
+        </li>`
+    historyList.insertAdjacentHTML('beforeend', layoutHistoryPass);
+
     mainInput.value = finalPass;
 }
 generationPass();
 
 const copyPassword = () => {
     let passText = mainInput.value;
-    navigator.clipboard.writeText(passText);
-    popupCopied.classList.add('active');
-    setTimeout(function() {
-        popupCopied.classList.remove('active');
-    }, 1000);
+    visibleCopiedPopup(passText);
 }
+// const copyHistoryPassword = (e) => {
+//     let currentElem = e.target.previousSibling.previousSibling.innerHTML;
+//     let currentPass = currentElem.textContent;
+//     console.log(currentElem);
+//     visibleCopiedPopup(currentPass);
+// }
 
 const updateRangeValue = () => {
     let val = inputRange.value
@@ -75,6 +87,14 @@ const updateRangeValue = () => {
 }
 updateRangeValue();
 
+// const historyCopyBtn = passwordContainer.querySelectorAll('.history-copy');
+
+const clearHistory = () => {
+    historyList.replaceChildren();
+}
+
 inputRange.addEventListener('input', updateRangeValue);
 copyBtn.addEventListener('click', copyPassword);
+clearHistoryBtn.addEventListener('click', clearHistory);
+// historyCopyBtn.addEventListener('click', copyHistoryPassword);
 createPass.addEventListener('click', generationPass);

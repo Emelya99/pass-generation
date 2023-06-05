@@ -261,7 +261,7 @@ button {
 }
 .password .history-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     margin-bottom: 40px;
 }
 .password .history-item {
@@ -269,7 +269,7 @@ button {
     align-items: center;
     justify-content: space-between;
 }
-.password .history-item:not(:last-child) {
+.password .history-item:not(:first-child) {
     margin-bottom: 20px;
 }
 .password .history-pass {
