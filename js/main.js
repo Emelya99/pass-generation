@@ -1,18 +1,18 @@
 import { storage } from './storage.js';
 
-const passForm = document.querySelector('.password-form');
-const createPass = passForm.querySelector('.create-pass');
-const copyBtn = passForm.querySelector('.copy-btn');
-const mainInput = passForm.querySelector('.main-input');
+const passwordContainer = document.querySelector('.password');
+const createPass = passwordContainer.querySelector('.create-pass');
+const copyBtn = passwordContainer.querySelector('.copy-btn');
+const mainInput = passwordContainer.querySelector('.main-input');
 /* Input Range */
-const inputRange = passForm.querySelector('#range-input');
-const inputRangeValue = passForm.querySelector('.range-value');
+const inputRange = passwordContainer.querySelector('#range-input');
+const inputRangeValue = passwordContainer.querySelector('.range-value');
 const inputRangeMaxValue = inputRange.max;
 /* Checkboxes */
-const uppercaseCheckBox = passForm.querySelector('#uppercase');
-const differentCheckBox = passForm.querySelector('#different');
-const numbersCheckBox = passForm.querySelector('#numbers');
-const symbolsCheckBox = passForm.querySelector('#symbols');
+const uppercaseCheckBox = passwordContainer.querySelector('#uppercase');
+const differentCheckBox = passwordContainer.querySelector('#different');
+const numbersCheckBox = passwordContainer.querySelector('#numbers');
+const symbolsCheckBox = passwordContainer.querySelector('#symbols');
 /* Popups */
 const popupCopied = document.querySelector('.popup-copied');
 

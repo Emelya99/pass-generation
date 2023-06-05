@@ -49,8 +49,6 @@ img {
 }
 *:before,
 *:after,
-*:hover:before,
-*:hover:after,
 a,
 button {
     transition: all 0.3s ease-in-out;
@@ -63,8 +61,8 @@ button {
     flex-direction: column;
 }
 .container {
-    max-width: 1166px;
-    padding: 0 15px;
+    max-width: 1196px;
+    padding: 0 30px;
     margin: 0 auto;
 }
 
@@ -74,10 +72,11 @@ button {
 }
 .password .inner {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 .password .left-part {
-    width: calc(100% - 390px);
+    width: calc(100% - 420px);
     max-width: 588px;
 }
 /* Input Form */
@@ -109,6 +108,10 @@ button {
     font-size: 0;
     line-height: 1;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.password .create-pass:hover {
+    transform: scale(1.1) translateY(-50%);
 }
 .password .strength-pass {
     display: flex;
@@ -142,6 +145,9 @@ button {
     text-transform: uppercase;
     color: #000000;
     background: #F8EF00;
+}
+.password .copy-btn:hover {
+    background: #FFF;
 }
 .password .copy-btn img {
     position: absolute;
@@ -251,7 +257,7 @@ button {
     height: 24px;
 }
 .password .right-part {
-    width: 390px;
+    width: 420px;
 }
 .password .history-list {
     display: flex;
@@ -268,7 +274,7 @@ button {
 }
 .password .history-pass {
     width: calc(100% - 24px);
-    padding-right: 100px;
+    padding-right: 20px;
     opacity: 0.8;
 }
 .password .history-pass span {
@@ -281,6 +287,10 @@ button {
     width: 24px;
     height: 24px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.password .history-copy:hover {
+    transform: scale(1.1);
 }
 .password .clear-history {
     display: flex;
@@ -293,7 +303,75 @@ button {
     color: rgba(0, 240, 255, 1);
 }
 
+@media(max-width: 1130px) {
+    h1 {
+        margin-bottom: 40px;
+    }
+    .password {
+        padding: 80px 0;
+    }
+    .password .left-part {
+        width: 100%;
+        max-width: initial;
+        margin-bottom: 80px;
+    }
+    .password .right-part {
+        width: 100%;
+    }
+}
 
+@media(max-width: 640px) {
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media(max-width: 476px) {
+    h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    .password {
+        padding: 60px 0;
+    }
+    .left-part {
+        margin-bottom: 60px;
+    }
+    .password .main-input {
+        height: 54px;
+        padding: 10px 77px 10px 10px;
+    }
+    .password .create-pass {
+        right: 10px;
+    }
+    .password .strength-pass {
+        right: 44px;
+    }
+    .password .copy-btn {
+        width: 100%;
+        margin-bottom: 40px;
+        padding: 18px 60px 18px 15px;
+        font-size: 14px;
+    }
+    .password .copy-btn img {
+        right: 15px;
+    }
+    .password .range-box {
+        margin-bottom: 50px;
+    }
+    .password .extra-settings {
+        width: calc(100% + 20px);
+        margin: -10px;
+    }
+    .password .extra-settings li {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+    .password .history-pass {
+        word-wrap: break-word;
+    }
+}
 
 /* Popups  */
 .popup {
@@ -318,4 +396,21 @@ button {
     width: 24px;
     height: 24px;
     margin-right: 10px;
+}
+
+@media(max-width: 1130px) {
+    .popup {
+        top: 30px;
+        right: 30px;
+        padding: 12px 36px;
+    }
+}
+
+@media(max-width: 640px) {
+    .popup {
+        top: 10px;
+        right: 10px;
+        padding: 8px 24px;
+        font-size: 14px;
+    }
 }
