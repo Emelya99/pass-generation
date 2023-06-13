@@ -1,5 +1,5 @@
 import { storage } from './storage.js';
-import { visibleCopiedPopup } from './utils.js';
+import { visibleCopiedPopup, renderHistoryPass } from './utils.js';
 
 const passwordContainer = document.querySelector('.password');
 const createPass = passwordContainer.querySelector('.create-pass');
@@ -17,8 +17,11 @@ const numbersCheckBox = passwordContainer.querySelector('#numbers');
 const symbolsCheckBox = passwordContainer.querySelector('#symbols');
 /* History Elements */
 const historyList = passwordContainer.querySelector('.history-list');
-
 const clearHistoryBtn = passwordContainer.querySelector('.clear-history_btn');
+/* History Elements */
+let localStorageLastPass = JSON.parse(localStorage.getItem('lastPass')) || false;
+let localStoragePassArr = JSON.parse(localStorage.getItem('AllPassArr')) || [];
+let localStorageRangePosition = JSON.parse(localStorage.getItem('rangePosition')) || false;
 
 const { alfabet, numbers, symbols } = storage;
 
@@ -60,17 +63,28 @@ const generationPass = () => {
     }
 
     // Render pass in block historyList
-    let layoutHistoryPass =
-        `<li class="history-item">
-            <p class="history-pass">${finalPass}</p>
-            <img class="history-copy" src="img/copy.svg" alt="copy">
-        </li>`
+    let layoutHistoryPass = renderHistoryPass(finalPass);
     historyList.insertAdjacentHTML('beforeend', layoutHistoryPass);
 
     mainInput.value = finalPass;
     passwordRightPart.style.display = 'block';
+    localStoragePassArr.push(finalPass);
+
+    localStorage.setItem('AllPassArr', JSON.stringify(localStoragePassArr));
+    localStorage.setItem('lastPass', JSON.stringify(finalPass));
 }
-generationPass();
+
+if (localStorageLastPass) {
+    mainInput.value = localStorageLastPass;
+    inputRange.value = localStorageRangePosition;
+    // Render pass in block historyList
+    localStoragePassArr.map(item => {
+        let layoutHistoryPass = renderHistoryPass(item);
+        historyList.insertAdjacentHTML('beforeend', layoutHistoryPass);
+    })
+} else {
+    generationPass();
+}
 
 const copyPassword = () => {
     let passText = mainInput.value;
@@ -78,15 +92,21 @@ const copyPassword = () => {
 }
 
 const updateRangeValue = () => {
-    let val = inputRange.value
+    let val = inputRange.value;
     inputRangeValue.value = val;
     inputRangeValue.style.left = Number(val) * (100 / inputRangeMaxValue) + '%';
+
+    localStorage.setItem('rangePosition', JSON.stringify(val));
 }
 updateRangeValue();
 
 const clearHistory = () => {
     historyList.replaceChildren();
     passwordRightPart.style.display = 'none';
+
+    localStoragePassArr = [];
+    localStorage.removeItem('AllPassArr');
+    localStorage.removeItem('lastPass');
 }
 
 const copyHistoryPasses = (e) => {

@@ -7,3 +7,13 @@ export const visibleCopiedPopup = (text) => {
         popupCopied.classList.remove('active');
     }, 1000);
 }
+
+export const renderHistoryPass = (pass) => {
+    let htmlContent =
+        `<li class="history-item">
+            <p class="history-pass">${pass}</p>
+            <img class="history-copy" src="img/copy.svg" alt="copy">
+        </li>`
+
+    return htmlContent;
+}
