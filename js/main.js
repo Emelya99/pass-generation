@@ -5,6 +5,7 @@ const passwordContainer = document.querySelector('.password');
 const createPass = passwordContainer.querySelector('.create-pass');
 const copyBtn = passwordContainer.querySelector('.copy-btn');
 const mainInput = passwordContainer.querySelector('.main-input');
+const passwordRightPart = document.querySelector('.right-part');
 /* Input Range */
 const inputRange = passwordContainer.querySelector('#range-input');
 const inputRangeValue = passwordContainer.querySelector('.range-value');
@@ -16,6 +17,7 @@ const numbersCheckBox = passwordContainer.querySelector('#numbers');
 const symbolsCheckBox = passwordContainer.querySelector('#symbols');
 /* History Elements */
 const historyList = passwordContainer.querySelector('.history-list');
+
 const clearHistoryBtn = passwordContainer.querySelector('.clear-history_btn');
 
 const { alfabet, numbers, symbols } = storage;
@@ -66,6 +68,7 @@ const generationPass = () => {
     historyList.insertAdjacentHTML('beforeend', layoutHistoryPass);
 
     mainInput.value = finalPass;
+    passwordRightPart.style.display = 'block';
 }
 generationPass();
 
@@ -73,12 +76,6 @@ const copyPassword = () => {
     let passText = mainInput.value;
     visibleCopiedPopup(passText);
 }
-// const copyHistoryPassword = (e) => {
-//     let currentElem = e.target.previousSibling.previousSibling.innerHTML;
-//     let currentPass = currentElem.textContent;
-//     console.log(currentElem);
-//     visibleCopiedPopup(currentPass);
-// }
 
 const updateRangeValue = () => {
     let val = inputRange.value
@@ -87,14 +84,22 @@ const updateRangeValue = () => {
 }
 updateRangeValue();
 
-// const historyCopyBtn = passwordContainer.querySelectorAll('.history-copy');
-
 const clearHistory = () => {
     historyList.replaceChildren();
+    passwordRightPart.style.display = 'none';
 }
 
+const copyHistoryPasses = (e) => {
+    let buttonText = e.target.previousSibling.previousSibling.innerHTML;
+    visibleCopiedPopup(buttonText);
+}
+
+passwordContainer.addEventListener('click', function(event) {
+    if (event.target.matches('.history-copy')) {
+        copyHistoryPasses(event);
+    }
+});
 inputRange.addEventListener('input', updateRangeValue);
 copyBtn.addEventListener('click', copyPassword);
 clearHistoryBtn.addEventListener('click', clearHistory);
-// historyCopyBtn.addEventListener('click', copyHistoryPassword);
 createPass.addEventListener('click', generationPass);
