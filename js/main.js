@@ -30,7 +30,7 @@ const numbersArr = numbers.split('');
 const symbolsArr = symbols.split('');
 
 const generationPass = () => {
-    let passLength = inputRangeValue.value || 10;
+    let passLength = inputRange.value;
     let finalPass = '';
     let finalArr = [];
     finalArr.push(...alfabetArr);
@@ -83,6 +83,7 @@ if (localStorageLastPass) {
         historyList.insertAdjacentHTML('beforeend', layoutHistoryPass);
     })
 } else {
+    inputRange.value = localStorageRangePosition;
     generationPass();
 }
 
