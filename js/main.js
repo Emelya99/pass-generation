@@ -11,6 +11,7 @@ const inputRange = passwordContainer.querySelector('#range-input');
 const inputRangeValue = passwordContainer.querySelector('.range-value');
 const inputRangeMaxValue = inputRange.max;
 /* Checkboxes */
+const checkBoxesContainer = passwordContainer.querySelector('.extra-settings');
 const uppercaseCheckBox = passwordContainer.querySelector('#uppercase');
 const differentCheckBox = passwordContainer.querySelector('#different');
 const numbersCheckBox = passwordContainer.querySelector('#numbers');
@@ -18,10 +19,11 @@ const symbolsCheckBox = passwordContainer.querySelector('#symbols');
 /* History Elements */
 const historyList = passwordContainer.querySelector('.history-list');
 const clearHistoryBtn = passwordContainer.querySelector('.clear-history_btn');
-/* History Elements */
+/* LocalStorage Elements */
 let localStorageLastPass = JSON.parse(localStorage.getItem('lastPass')) || false;
 let localStoragePassArr = JSON.parse(localStorage.getItem('AllPassArr')) || [];
 let localStorageRangePosition = JSON.parse(localStorage.getItem('rangePosition')) || false;
+let localStorageCheckboxObj = JSON.parse(localStorage.getItem('checkboxesState')) || {};
 
 const { alfabet, numbers, symbols } = storage;
 
@@ -74,22 +76,44 @@ const generationPass = () => {
     localStorage.setItem('lastPass', JSON.stringify(finalPass));
 }
 
-if (localStorageLastPass) {
-    mainInput.value = localStorageLastPass;
+if (localStorageRangePosition) {
     inputRange.value = localStorageRangePosition;
-    // Render pass in block historyList
-    localStoragePassArr.map(item => {
-        let layoutHistoryPass = renderHistoryPass(item);
-        historyList.insertAdjacentHTML('beforeend', layoutHistoryPass);
-    })
+    if (localStorageCheckboxObj) {
+        Object.entries(localStorageCheckboxObj).map(([key, value]) => {
+            let elemId = document.getElementById(key);
+            let elemChecked = value;
+            if(elemChecked) {
+                elemId.checked = true;
+            }
+        });
+    }
+    // Render arr pass in block historyList
+    if (localStoragePassArr) {
+        localStoragePassArr.map(item => {
+            let layoutHistoryPass = renderHistoryPass(item);
+            historyList.insertAdjacentHTML('beforeend', layoutHistoryPass);
+        })
+    }
+    if(localStorageLastPass) {
+        mainInput.value = localStorageLastPass;
+    } else {
+        generationPass();
+    }
 } else {
-    inputRange.value = localStorageRangePosition;
+    uppercaseCheckBox.checked = true;
+    numbersCheckBox.checked = true;
+    inputRange.value = 10;
     generationPass();
 }
 
 const copyPassword = () => {
     let passText = mainInput.value;
     visibleCopiedPopup(passText);
+}
+
+const copyHistoryPasses = (e) => {
+    let buttonText = e.target.previousSibling.previousSibling.innerHTML;
+    visibleCopiedPopup(buttonText);
 }
 
 const updateRangeValue = () => {
@@ -110,11 +134,16 @@ const clearHistory = () => {
     localStorage.removeItem('lastPass');
 }
 
-const copyHistoryPasses = (e) => {
-    let buttonText = e.target.previousSibling.previousSibling.innerHTML;
-    visibleCopiedPopup(buttonText);
-}
 
+checkBoxesContainer.addEventListener('click', function(event) {
+    if (event.target.matches('input')) {
+        let elem = event.srcElement;
+        let elemId = elem.id;
+        let elemChecked = elem.checked;
+        localStorageCheckboxObj[elemId.toString()] = elemChecked;
+        localStorage.setItem('checkboxesState', JSON.stringify(localStorageCheckboxObj));
+    }
+})
 passwordContainer.addEventListener('click', function(event) {
     if (event.target.matches('.history-copy')) {
         copyHistoryPasses(event);
