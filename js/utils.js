@@ -17,3 +17,13 @@ export const renderHistoryPass = (pass) => {
 
     return htmlContent;
 }
+
+export const characterCount = (length, arr, pass) => {
+    let count = 0;
+    for (let i = 0; i < length; i++) {
+        if (arr.find(item => item === pass[i])) {
+            count++;
+        }
+    }
+    return count;
+}

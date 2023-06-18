@@ -1,10 +1,11 @@
 import { storage } from './storage.js';
-import { visibleCopiedPopup, renderHistoryPass } from './utils.js';
+import { visibleCopiedPopup, renderHistoryPass, characterCount } from './utils.js';
 
 const passwordContainer = document.querySelector('.password');
 const createPass = passwordContainer.querySelector('.create-pass');
 const copyBtn = passwordContainer.querySelector('.copy-btn');
 const mainInput = passwordContainer.querySelector('.main-input');
+const strenghtPass = passwordContainer.querySelector('.strength-pass');
 const passwordRightPart = document.querySelector('.right-part');
 /* Input Range */
 const inputRange = passwordContainer.querySelector('#range-input');
@@ -31,6 +32,45 @@ const alfabetArr = alfabet.split('');
 const numbersArr = numbers.split('');
 const symbolsArr = symbols.split('');
 
+
+const strenghtPassFunc = (num) => {
+    strenghtPass.replaceChildren();
+    for (let i = 0; i < 4; i++) {
+        let span = document.createElement('span');
+        if (num > 0) {
+            span.classList.add('active');
+            num--;
+        }
+        strenghtPass.appendChild(span);
+    }
+}
+
+const passwordComplexityCheck = (password) => {
+    let passwordLength = password.length;
+    let numberCount = characterCount(passwordLength, numbersArr, password);
+    let symbolCount = characterCount(passwordLength, symbolsArr, password);
+    let letterCount = characterCount(passwordLength, alfabetArr, password);
+    let letterUppercaseCount = passwordLength - numberCount - symbolCount - letterCount;
+    let strength = 0;
+
+    if (passwordLength > 7) {
+        strength++;
+    }
+    if (numberCount >= 1) {
+        strength++;
+    }
+    if (symbolCount >= 1) {
+        strength++;
+    }
+    if (letterUppercaseCount >= 1) {
+        strength++;
+    }
+    if (letterCount > 20) {
+        strength++;
+    }
+    strenghtPassFunc(strength);
+}
+
 const generationPass = () => {
     let passLength = inputRange.value;
     let finalPass = '';
@@ -44,7 +84,7 @@ const generationPass = () => {
 
     for (let i = 0; i < passLength; i++) {
         let randomArrIndex = Math.floor(Math.random() * finalArr.length);
-        
+
         if (i === 4 && symbolsCheckBox.checked) {
             finalArr.push(...symbolsArr);
         }
@@ -72,6 +112,7 @@ const generationPass = () => {
     mainInput.value = finalPass;
     passwordRightPart.style.display = 'block';
     localStoragePassArr.push(finalPass);
+    passwordComplexityCheck(finalPass);
 
     localStorage.setItem('AllPassArr', JSON.stringify(localStoragePassArr));
     localStorage.setItem('lastPass', JSON.stringify(finalPass));
@@ -97,12 +138,11 @@ if (localStorageRangePosition) {
     }
     if(localStorageLastPass) {
         mainInput.value = localStorageLastPass;
+        passwordComplexityCheck(localStorageLastPass);
     } else {
         generationPass();
     }
 } else {
-    uppercaseCheckBox.checked = true;
-    numbersCheckBox.checked = true;
     inputRange.value = 10;
     generationPass();
 }
