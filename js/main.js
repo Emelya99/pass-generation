@@ -40,13 +40,14 @@ const generationPass = () => {
     if (numbersCheckBox.checked) {
         finalArr.push(...numbersArr);
     }
-    if (symbolsCheckBox.checked) {
-        finalArr.push(...symbolsArr);
-    }
     finalArr.sort(() => Math.round(Math.random() * 100) - 50);
 
     for (let i = 0; i < passLength; i++) {
         let randomArrIndex = Math.floor(Math.random() * finalArr.length);
+        
+        if (i === 4 && symbolsCheckBox.checked) {
+            finalArr.push(...symbolsArr);
+        }
         
         if(uppercaseCheckBox.checked && alfabetArr.find(item => item === finalArr[randomArrIndex])) {
             let randomNum = Math.floor(Math.random() * 10);
@@ -149,6 +150,9 @@ passwordContainer.addEventListener('click', function(event) {
         copyHistoryPasses(event);
     }
 });
+historyList.addEventListener('scroll', (e) => {
+    console.log(e);
+})
 inputRange.addEventListener('input', updateRangeValue);
 copyBtn.addEventListener('click', copyPassword);
 clearHistoryBtn.addEventListener('click', clearHistory);

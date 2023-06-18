@@ -14,11 +14,11 @@ body {
     text-transform: uppercase;
     color: #FAFAFA;
     background: #000000;
-    border: 1px solid rgba(0, 240, 255, 1);
-    border-width: 2px 1px 0 1px;
 }
 main {
     flex: 1 1 auto;
+    border: 1px solid rgba(0, 240, 255, 1);
+    border-width: 2px 1px 0 1px;
 }
 h1 {
     max-width: 558px;
@@ -76,7 +76,7 @@ button {
     justify-content: space-between;
 }
 .password .left-part {
-    width: calc(100% - 420px);
+    width: calc(100% - 430px);
     max-width: 588px;
 }
 /* Input Form */
@@ -260,12 +260,20 @@ button {
     height: 24px;
 }
 .password .right-part {
-    width: 420px;
+    width: 430px;
+}
+.password .list-container {
+    max-height: 423px;
+    /* overflow-y: auto; */
+    overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+    margin-bottom: 40px;
+    padding-right: 10px;
 }
 .password .history-list {
     display: flex;
     flex-direction: column-reverse;
-    margin-bottom: 40px;
+    overflow: hidden;
 }
 .password .history-item {
     display: flex;
@@ -276,7 +284,7 @@ button {
     margin-bottom: 20px;
 }
 .password .history-pass {
-    width: calc(100% - 24px);
+    width: calc(100% - 29px);
     padding-right: 20px;
     opacity: 0.8;
     text-transform: initial;
@@ -284,6 +292,7 @@ button {
 .password .history-copy {
     width: 24px;
     height: 24px;
+    margin-right: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
@@ -316,14 +325,20 @@ button {
     .password .right-part {
         width: 100%;
     }
+    .password .list-container {
+        padding: 0;
+    }
 }
-
 @media(max-width: 640px) {
     .container {
         padding: 0 15px;
     }
+    .password .history-pass {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
-
 @media(max-width: 476px) {
     h1 {
         font-size: 32px;
@@ -365,6 +380,9 @@ button {
         width: 100%;
         padding: 10px;
         font-size: 14px;
+    }
+    .password .list-container {
+        margin-bottom: 30px;
     }
     .password .history-pass {
         word-wrap: break-word;
