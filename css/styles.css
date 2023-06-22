@@ -1,4 +1,6 @@
-*{
+*,
+*::after,
+*::before{
     box-sizing: border-box;
 }
 html,
@@ -15,10 +17,26 @@ body {
     color: #FAFAFA;
     background: #000000;
 }
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 240, 255, 1);
+}
+body::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 240, 255, 1);
+}
 main {
     flex: 1 1 auto;
-    border: 1px solid rgba(0, 240, 255, 1);
-    border-width: 2px 1px 0 1px;
 }
 h1 {
     max-width: 558px;
@@ -76,8 +94,9 @@ button {
     justify-content: space-between;
 }
 .password .left-part {
-    width: calc(100% - 430px);
-    max-width: 588px;
+    /* width: calc(100% - 430px);
+    max-width: 588px; */
+    width: 588px;
 }
 /* Input Form */
 .password .input-box {
@@ -264,9 +283,9 @@ button {
 }
 .password .list-container {
     max-height: 423px;
+    overflow: auto;
     overflow-y: auto;
     margin-bottom: 40px;
-    padding-right: 10px;
     scrollbar-width: thin;
     scrollbar-color: #00F0FF #FFFFFF;
 }
@@ -285,7 +304,6 @@ button {
 .password .history-list {
     display: flex;
     flex-direction: column-reverse;
-    overflow: hidden;
 }
 .password .history-item {
     display: flex;
@@ -336,9 +354,6 @@ button {
     }
     .password .right-part {
         width: 100%;
-    }
-    .password .list-container {
-        padding: 0;
     }
 }
 @media(max-width: 640px) {

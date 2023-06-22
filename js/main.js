@@ -190,9 +190,6 @@ passwordContainer.addEventListener('click', function(event) {
         copyHistoryPasses(event);
     }
 });
-historyList.addEventListener('scroll', (e) => {
-    console.log(e);
-})
 inputRange.addEventListener('input', updateRangeValue);
 copyBtn.addEventListener('click', copyPassword);
 clearHistoryBtn.addEventListener('click', clearHistory);
