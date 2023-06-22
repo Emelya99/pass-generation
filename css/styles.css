@@ -264,11 +264,23 @@ button {
 }
 .password .list-container {
     max-height: 423px;
-    /* overflow-y: auto; */
-    overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
     margin-bottom: 40px;
     padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #00F0FF #FFFFFF;
+}
+.password .list-container::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+.password .list-container::-webkit-scrollbar-thumb {
+    background-color: #00F0FF;
+    border-radius: 4px;
+}
+.password .list-container::-webkit-scrollbar-thumb:hover {
+    background-color: #00F0FF;
 }
 .password .history-list {
     display: flex;
