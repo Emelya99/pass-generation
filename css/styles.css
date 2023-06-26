@@ -322,7 +322,7 @@ button {
 .password .history-copy {
     width: 24px;
     height: 24px;
-    margin-right: 5px;
+    margin-right: 10px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
